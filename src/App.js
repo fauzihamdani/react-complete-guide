@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Person from './Person/Person';
+import person from './Person/Person';
 
 class App extends Component {
 	state = {
@@ -13,19 +14,6 @@ class App extends Component {
 		showPersons: false,
 	};
 
-	switchNameHandler = (newName) => {
-		// console.log('Was clicked!');
-		// DON'T DO THIS: this.state.persons[0].name = 'Maximilian';
-		this.setState({
-			persons: [
-				{ name: newName, age: 28 },
-				{ name: 'Manu', age: 29 },
-				{ name: 'Stephanie', age: 27 },
-			],
-			otherState: 'Some other value',
-		});
-	};
-
 	nameChangedHandler = (event) => {
 		this.setState({
 			persons: [
@@ -34,6 +22,12 @@ class App extends Component {
 				{ name: 'Stephanie', age: 27 },
 			],
 		});
+	};
+
+	deletePersonHandler = (personIndex) => {
+		const persons = this.state.persons;
+		persons.splice(personIndex, 1);
+		this.setState({ persons: persons });
 	};
 
 	togglePersonsHandler = () => {
@@ -55,8 +49,15 @@ class App extends Component {
 		if (this.state.showPersons) {
 			persons = (
 				<div>
-					{this.state.persons.map((person) => {
-						return <Person name={person.name} age={person.age} />;
+					{this.state.persons.map((person, index) => {
+						return (
+							<Person
+								key={index}
+								click={() => this.deletePersonHandler(index)}
+								name={person.name}
+								age={person.age}
+							/>
+						);
 					})}
 				</div>
 			);
@@ -64,7 +65,7 @@ class App extends Component {
 
 		return (
 			<div className='App'>
-				<h1>Hi, I'm a React App</h1>
+				<h1>Hi, I'm a React App Developer</h1>
 				<p>This is really working!</p>
 				<button style={style} onClick={this.togglePersonsHandler}>
 					Switch Name
