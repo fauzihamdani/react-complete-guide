@@ -6,9 +6,9 @@ import person from './Person/Person';
 class App extends Component {
 	state = {
 		persons: [
-			{ name: 'Max', age: 28 },
-			{ name: 'Manu', age: 29 },
-			{ name: 'Stephanie', age: 26 },
+			{ id: 'asd', name: 'Max', age: 28 },
+			{ id: 'fds', name: 'Manu', age: 29 },
+			{ id: 'wer', name: 'Stephanie', age: 26 },
 		],
 		otherState: 'some other value',
 		showPersons: false,
@@ -25,7 +25,8 @@ class App extends Component {
 	};
 
 	deletePersonHandler = (personIndex) => {
-		const persons = this.state.persons;
+		// const persons = this.state.persons;
+		const persons = [...this.state.persons];
 		persons.splice(personIndex, 1);
 		this.setState({ persons: persons });
 	};
@@ -52,7 +53,7 @@ class App extends Component {
 					{this.state.persons.map((person, index) => {
 						return (
 							<Person
-								key={index}
+								key={person.id}
 								click={() => this.deletePersonHandler(index)}
 								name={person.name}
 								age={person.age}
@@ -68,7 +69,7 @@ class App extends Component {
 				<h1>Hi, I'm a React App Developer</h1>
 				<p>This is really working!</p>
 				<button style={style} onClick={this.togglePersonsHandler}>
-					Switch Name
+					Togle Name
 				</button>
 				{persons}
 			</div>
