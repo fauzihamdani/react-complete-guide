@@ -1,3 +1,15 @@
 .App {
 	text-align: center;
 }
+
+.red {
+	color: red;
+}
+
+.red:hover {
+	color: brown;
+}
+
+.bold {
+	font-weight: bold;
+}
