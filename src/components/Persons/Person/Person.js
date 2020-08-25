@@ -23,6 +23,7 @@ const person = (props) => {
 				Helooooo. I'am {props.name} and Iam {props.age} years old
 			</p>
 			<p>{props.children}</p>
+			{/* props.children -> show the elements that containing plain text, unorderes list w/ multiple items or beetwen closing tag */}
 			<input type='text' onChange={props.changed} value={props.name} />
 		</StyledDiv>
 	);
