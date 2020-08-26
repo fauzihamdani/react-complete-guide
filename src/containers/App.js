@@ -5,15 +5,30 @@ import Cockpit from '../components/Cockpit/Cockpit';
 // import ErrorBoundary from './ErrorBoundary/ErrorBoundary';
 
 class App extends Component {
+	constructor(props) {
+		super(props);
+		console.log('[app.js] constructor', props);
+	}
+
 	state = {
 		persons: [
 			{ id: 'asd', name: 'Max', age: 28 },
 			{ id: 'fds', name: 'Manu', age: 29 },
 			{ id: 'wer', name: 'Stephanie', age: 26 },
+			{ id: 'e23', name: 'blabla', age: 49 },
 		],
 		otherState: 'some other value',
 		showPersons: false,
 	};
+
+	static getDerivedStateFromProps(props, state) {
+		console.log('[App.js] getDerivedStateFromProps', props);
+		return state;
+	}
+
+	componentDidMount() {
+		console.log('[App.js] ComponentDidMount ');
+	}
 
 	nameChangedHandler = (event, id) => {
 		const personIndex = this.state.persons.findIndex(p => {
@@ -60,6 +75,7 @@ class App extends Component {
 		return (
 			<div className={classes.App}>
 				<Cockpit
+					title={this.props.appTitle}
 					showPersons={this.state.showPersons}
 					persons={this.state.persons}
 					clicked={this.togglePersonsHandler}

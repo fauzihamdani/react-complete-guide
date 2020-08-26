@@ -4,22 +4,22 @@ import classes from './Cockpit.css';
 
 const cockpit = props => {
 	const assignedClasses = [];
-	let btnClass = [classes.Button];
+	let btnClass = [classes.button];
 
 	if (props.showPersons) {
 		btnClass.push(classes.Red);
 	}
 
 	if (props.persons.length <= 2) {
-		assignedClasses.push(classes.red);
+		assignedClasses.push(classes.Red);
 	}
 	if (props.persons.length <= 1) {
-		assignedClasses.push(classes.bold);
+		assignedClasses.push(classes.Bold);
 	}
 
 	return (
 		<div className={classes.Cockpit}>
-			<h1>Hi, I'm a React App Developer</h1>
+			<h1>{props.title}</h1>
 			<p className={assignedClasses.join(' ')}>This is really working!</p>
 			<button className={btnClass} onClick={props.clicked}>
 				Togle Name
