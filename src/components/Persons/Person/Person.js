@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './Person.css';
 
 import styled from 'styled-components';
@@ -16,18 +16,25 @@ const StyledDiv = styled.div`
 	}
 `;
 
-const person = props => {
-	console.log('Person.js Rendering');
-	return (
-		<StyledDiv>
-			<p onClick={props.click}>
-				Helooooo. I'am {props.name} and Iam {props.age} years old
-			</p>
-			<p>{props.children}</p>
-			{/* props.children -> show the elements that containing plain text, unorderes list w/ multiple items or beetwen closing tag */}
-			<input type='text' onChange={props.changed} value={props.name} />
-		</StyledDiv>
-	);
-};
+class Person extends Component {
+	render() {
+		console.log('Person.js Rendering');
+		return (
+			<StyledDiv>
+				<p onClick={this.props.click}>
+					Helooooo. I'am {this.props.name} and Iam {this.props.age} years
+					old
+				</p>
+				<p>{this.props.children}</p>
+				{/* this.props.children -> show the elements that containing plain text, unorderes list w/ multiple items or beetwen closing tag */}
+				<input
+					type='text'
+					onChange={this.props.changed}
+					value={this.props.name}
+				/>
+			</StyledDiv>
+		);
+	}
+}
 
-export default person;
+export default Person;

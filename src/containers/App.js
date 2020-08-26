@@ -7,7 +7,7 @@ import Cockpit from '../components/Cockpit/Cockpit';
 class App extends Component {
 	constructor(props) {
 		super(props);
-		console.log('[app.js] constructor', props);
+		console.log('[app.js] constructor');
 	}
 
 	state = {
@@ -61,6 +61,7 @@ class App extends Component {
 	};
 
 	render() {
+		console.log('app.js Rendering');
 		let persons = null;
 		if (this.state.showPersons) {
 			persons = (
