@@ -3,41 +3,48 @@ import React, { Component } from 'react';
 import Person from './Person/Person';
 
 class Persons extends Component {
-	// static getDerivedStateFormProps(props, state) {
-	// 	console.log('[person,JS] getDerivedFromProps');
-	// }
+  // static getDerivedStateFromProps(props, state) {
+  //   console.log('[Persons.js] getDerivedStateFromProps');
+  //   return state;
+  // }
 
-	shouldComponentUpdate(nextProps, nextState) {
-		//<< this function just return boolean
-		console.log('Persons.js shouldComponentUpdate');
-		return true;
-	}
+  // componentWillReceiveProps(props) {
+  //   console.log('[Persons.js] componentWillReceiveProps', props);
+  // }
 
-	getSnapshotBeforeUpdate(prevProps, prevState) {
-		console.log('Persons.js shouldComponentUpdate');
-		return { message: 'Snapshot!' };
-	}
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('[Persons.js] shouldComponentUpdate');
+    return true;
+  }
 
-	componentDidUpdate(prevProps, prevState, snapshot) {
-		//<<this function will run when once with all the updating
-		console.log('PersonJs componentiDidUpdate');
-		console.log(snapshot);
-	}
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    console.log('[Persons.js] getSnapshotBeforeUpdate');
+    return { message: 'Snapshot!' };
+  }
 
-	render() {
-		console.log('[Persons.js] Rendering');
-		return this.props.persons.map((person, index) => {
-			return (
-				<Person
-					key={person.id}
-					click={() => this.props.clicked(index)}
-					name={person.name}
-					age={person.age}
-					changed={event => this.props.changed(event, person.id)}
-				/>
-			);
-		});
-	}
+  // componentWillUpdate() {
+
+  // }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    console.log('[Persons.js] componentDidUpdate');
+    console.log(snapshot);
+  }
+
+  render() {
+    console.log('[Persons.js] rendering...');
+    return this.props.persons.map((person, index) => {
+      return (
+        <Person
+          click={() => this.props.clicked(index)}
+          name={person.name}
+          age={person.age}
+          key={person.id}
+          changed={event => this.props.changed(event, person.id)}
+        />
+      );
+    });
+  }
 }
 
 export default Persons;
